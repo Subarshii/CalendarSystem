@@ -16,8 +16,21 @@ public class Holidays {
   private Integer worktime;
 
   private Integer dayleave;
+
   @Enumerated(EnumType.STRING)
   private LeaveType leavetype;
+
+  @ManyToOne
+  @JoinColumn(name = "userid", insertable = false, updatable = false)
+  private User user;
+
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
+  }
 
   public Integer getHolidayid() {
     return holidayid;
@@ -26,7 +39,6 @@ public class Holidays {
   public void setHolidayid(Integer holidayid) {
     this.holidayid = holidayid;
   }
-
 
   public LeaveType getLeavetype() {
     return leavetype;
@@ -48,8 +60,6 @@ public class Holidays {
     }
     return worktime;
   }
-
-
 
   public Integer getWorktime() {
     return worktime;
@@ -82,11 +92,15 @@ public class Holidays {
 
   @Override
   public String toString() {
-    return "Holidays{" +
-            "holidayid=" + holidayid +
-            ", worktime=" + worktime +
-            ", dayleave=" + dayleave +
-            ", leavetype=" + leavetype +
-            '}';
+    return "Holidays{"
+        + "holidayid="
+        + holidayid
+        + ", worktime="
+        + worktime
+        + ", dayleave="
+        + dayleave
+        + ", leavetype="
+        + leavetype
+        + '}';
   }
 }

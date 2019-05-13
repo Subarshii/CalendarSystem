@@ -10,8 +10,21 @@ public class Department {
   @SequenceGenerator(name = "department_id", allocationSize = 1, sequenceName = "DEPARTMENT_ID")
   @Id
   private Integer departmentid;
+
   private String department;
   private String description;
+
+  @ManyToOne
+  @JoinColumn(name = "userid", insertable = false, updatable = false)
+  private User user;
+
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
+  }
 
   public Integer getDepartmentid() {
     return departmentid;

@@ -27,7 +27,8 @@ public class HolidayService {
         Holidays holidays1 = new Holidays();
         holidays1.setHolidayid(9999);
         holidays1.setWorktime(15);
-        holidays1.getDayleave();
+        holidays.getHolidays();
+        holidays1.setDayleave(7);
         holidays1.setLeavetype(LeaveType.HOLIDAY);
         return holidaysRepository.save(holidays);
     }

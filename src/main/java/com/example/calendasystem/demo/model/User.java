@@ -9,144 +9,175 @@ import java.util.Objects;
 import java.util.StringJoiner;
 
 @Entity
-
 @Table(name = "USER_CALENDAR")
 public class User implements Serializable {
-    @GeneratedValue(generator = "user_uuid" ,strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "user_uuid",allocationSize = 1,sequenceName = "USER_UUID")
-    @Id
-    private Integer userid;
-    private String firstname;
-    private String lastname;
-    private String username;
-    private String password;
-    private Integer departmentid;
-    private String email;
-    private Long phone;
-    private Integer holidayid;
-    private LocalDate workstart;
-    private String description;
+  @GeneratedValue(generator = "user_uuid", strategy = GenerationType.SEQUENCE)
+  @SequenceGenerator(name = "user_uuid", allocationSize = 1, sequenceName = "USER_UUID")
+  @Id
+  private Integer userid;
 
-    public Integer getUserid() {
-        return userid;
-    }
+  private String firstname;
+  private String lastname;
+  private String username;
+  private String password;
+  private Integer departmentid;
+  private String email;
+  private Long phone;
+  private Integer holidayid;
+  private LocalDate workstart;
+  private String description;
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
-    }
+  @OneToMany
+  @JoinColumn(name = "holidayid", insertable = false, updatable = false)
+  private Holidays holidays;
 
-    public String getFirstname() {
-        return firstname;
-    }
+  public Holidays getHolidays() {
+    return holidays;
+  }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
+  @OneToOne
+  @JoinColumn(name = "departmentid", insertable = false, updatable = false)
+  private Department department;
 
-    public String getLastname() {
-        return lastname;
-    }
+  public Department getDepartment() {
+    return department;
+  }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
+  @OneToMany
+  @JoinColumn(name = "pendingid", insertable = false, updatable = false)
+  private HolidayPending holidayPending;
 
+  public HolidayPending getHolidayPending() {
+    return holidayPending;
+  }
 
+  public void setHolidayPending(HolidayPending holidayPending) {
+    this.holidayPending = holidayPending;
+  }
 
-    public String getUsername() {
-        return username;
-    }
+  public void setDepartment(Department department) {
+    this.department = department;
+  }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+  public void setHolidays(Holidays holidays) {
+    this.holidays = holidays;
+  }
 
-    public String getPassword() {
-        return password;
-    }
+  public Integer getUserid() {
+    return userid;
+  }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+  public void setUserid(Integer userid) {
+    this.userid = userid;
+  }
 
-    public Integer getDepartmentid() {
-        return departmentid;
-    }
+  public String getFirstname() {
+    return firstname;
+  }
 
-    public void setDepartmentid(Integer departmentid) {
-        this.departmentid = departmentid;
-    }
+  public void setFirstname(String firstname) {
+    this.firstname = firstname;
+  }
 
-    public String getEmail() {
-        return email;
-    }
+  public String getLastname() {
+    return lastname;
+  }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  public void setLastname(String lastname) {
+    this.lastname = lastname;
+  }
 
-    public Long getPhone() {
-        return phone;
-    }
+  public String getUsername() {
+    return username;
+  }
 
-    public void setPhone(Long phone) {
-        this.phone = phone;
-    }
+  public void setUsername(String username) {
+    this.username = username;
+  }
 
-    public Integer getHolidayid() {
-        return holidayid;
-    }
+  public String getPassword() {
+    return password;
+  }
 
-    public void setHolidayid(Integer holidayid) {
-        this.holidayid = holidayid;
-    }
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-    public LocalDate getWorkstart() {
-        return workstart;
-    }
+  public Integer getDepartmentid() {
+    return departmentid;
+  }
 
-    public void setWorkstart(LocalDate workstart) {
-        this.workstart = workstart;
-    }
+  public void setDepartmentid(Integer departmentid) {
+    this.departmentid = departmentid;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public String getEmail() {
+    return email;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  public void setEmail(String email) {
+    this.email = email;
+  }
 
+  public Long getPhone() {
+    return phone;
+  }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(userid, user.userid) &&
-                Objects.equals(username, user.username);
-    }
+  public void setPhone(Long phone) {
+    this.phone = phone;
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(userid, username);
-    }
+  public Integer getHolidayid() {
+    return holidayid;
+  }
 
-    @Override
-    public String toString() {
-        return new StringJoiner(", ", this.getClass().getSimpleName() + "[", "]")
-                .add("departmentid = " + departmentid)
-                .add("description = " + description)
-                .add("email = " + email)
-                .add("firstname = " + firstname)
-                .add("holidayid = " + holidayid)
-                .add("lastname = " + lastname)
-                .add("password = " + password)
-                .add("phone = " + phone)
-                .add("userid = " + userid)
-                .add("username = " + username)
-                .add("workstart = " + workstart)
-                .toString();
-    }
+  public void setHolidayid(Integer holidayid) {
+    this.holidayid = holidayid;
+  }
 
+  public LocalDate getWorkstart() {
+    return workstart;
+  }
+
+  public void setWorkstart(LocalDate workstart) {
+    this.workstart = workstart;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    User user = (User) o;
+    return Objects.equals(userid, user.userid) && Objects.equals(username, user.username);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(userid, username);
+  }
+
+  @Override
+  public String toString() {
+    return new StringJoiner(", ", this.getClass().getSimpleName() + "[", "]")
+        .add("departmentid = " + departmentid)
+        .add("description = " + description)
+        .add("email = " + email)
+        .add("firstname = " + firstname)
+        .add("holidayid = " + holidayid)
+        .add("lastname = " + lastname)
+        .add("password = " + password)
+        .add("phone = " + phone)
+        .add("userid = " + userid)
+        .add("username = " + username)
+        .add("workstart = " + workstart)
+        .toString();
+  }
 }

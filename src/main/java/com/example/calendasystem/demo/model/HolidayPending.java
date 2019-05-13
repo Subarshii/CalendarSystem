@@ -17,6 +17,17 @@ public class HolidayPending {
   private LocalDate datecreate;
   private LocalDate leavefrom;
   private LocalDate leaveto;
+  @ManyToOne
+  @JoinColumn(name = "userid", insertable = false, updatable = false)
+  private User user;
+
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
+  }
 
   @Enumerated(EnumType.STRING)
   private LeaveType leavetype;
