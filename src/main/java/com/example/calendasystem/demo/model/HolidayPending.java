@@ -3,6 +3,7 @@ package com.example.calendasystem.demo.model;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "HOLIDAY_PENDING")
@@ -11,29 +12,31 @@ public class HolidayPending {
 
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pending_id")
-  @SequenceGenerator(name = "pending_id", allocationSize = 1, sequenceName = "PENDING_ID")
+//  @SequenceGenerator(name = "pending_id", allocationSize = 1, sequenceName = "PENDING_ID")
   private Integer pendingid;
 
   private LocalDate datecreate;
   private LocalDate leavefrom;
   private LocalDate leaveto;
-  @ManyToOne
-  @JoinColumn(name = "userid", insertable = false, updatable = false)
-  private User user;
-
-  public User getUser() {
-    return user;
-  }
-
-  public void setUser(User user) {
-    this.user = user;
-  }
 
   @Enumerated(EnumType.STRING)
   private LeaveType leavetype;
 
   @Enumerated(EnumType.STRING)
   private StatusType statustype;
+//
+//  @ManyToMany(mappedBy = "userpending")
+//  private Set<User> users;
+//
+//  public Set<User> getUsers() {
+//    return users;
+//  }
+//
+//  public void setUsers(Set<User> users) {
+//    this.users = users;
+//  }
+
+  public HolidayPending() {}
 
   public Integer getPendingid() {
     return pendingid;
@@ -96,21 +99,5 @@ public class HolidayPending {
     return Objects.hash(pendingid);
   }
 
-  @Override
-  public String toString() {
-    return "HolidayPendingService{"
-        + "pendingid="
-        + pendingid
-        + ", datecreate="
-        + datecreate
-        + ", leavefrom="
-        + leavefrom
-        + ", leaveto="
-        + leaveto
-        + ", statustype="
-        + statustype
-        + ", leavetype="
-        + leavetype
-        + '}';
-  }
+
 }

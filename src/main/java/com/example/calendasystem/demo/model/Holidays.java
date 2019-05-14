@@ -1,16 +1,15 @@
 package com.example.calendasystem.demo.model;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "HOLIDAYS_CALENDAR")
 public class Holidays {
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "holiday_id")
-  @SequenceGenerator(name = "holiday_id", allocationSize = 1, sequenceName = "HOLIDAY_ID")
+  //  @SequenceGenerator(name = "holiday_id", allocationSize = 1, sequenceName = "HOLIDAY_ID")
   private Integer holidayid;
 
   private Integer worktime;
@@ -19,18 +18,19 @@ public class Holidays {
 
   @Enumerated(EnumType.STRING)
   private LeaveType leavetype;
+//
+//  @ManyToOne
+//  private User user;
 
-  @ManyToOne
-  @JoinColumn(name = "userid", insertable = false, updatable = false)
-  private User user;
+//  public User getUser() {
+//    return user;
+//  }
+//
+//  public void setUser(User user) {
+//    this.user = user;
+//  }
 
-  public User getUser() {
-    return user;
-  }
-
-  public void setUser(User user) {
-    this.user = user;
-  }
+  public Holidays() {}
 
   public Integer getHolidayid() {
     return holidayid;
@@ -90,17 +90,5 @@ public class Holidays {
     return Objects.hash(holidayid);
   }
 
-  @Override
-  public String toString() {
-    return "Holidays{"
-        + "holidayid="
-        + holidayid
-        + ", worktime="
-        + worktime
-        + ", dayleave="
-        + dayleave
-        + ", leavetype="
-        + leavetype
-        + '}';
-  }
+
 }

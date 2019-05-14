@@ -1,21 +1,17 @@
 package com.example.calendasystem.demo.model;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
-import java.util.StringJoiner;
 
 @Entity
 @Table(name = "USER_CALENDAR")
 public class User implements Serializable {
-  @GeneratedValue(generator = "user_uuid", strategy = GenerationType.SEQUENCE)
-  @SequenceGenerator(name = "user_uuid", allocationSize = 1, sequenceName = "USER_UUID")
+  @GeneratedValue(generator = "UserIdGenerator", strategy = GenerationType.SEQUENCE)
+  @SequenceGenerator(name = "UserIdGenerator", allocationSize = 1, sequenceName = "USER_UUID")
   @Id
   private Integer userid;
-
   private String firstname;
   private String lastname;
   private String username;
@@ -27,41 +23,8 @@ public class User implements Serializable {
   private LocalDate workstart;
   private String description;
 
-  @OneToMany
-  @JoinColumn(name = "holidayid", insertable = false, updatable = false)
-  private Holidays holidays;
 
-  public Holidays getHolidays() {
-    return holidays;
-  }
-
-  @OneToOne
-  @JoinColumn(name = "departmentid", insertable = false, updatable = false)
-  private Department department;
-
-  public Department getDepartment() {
-    return department;
-  }
-
-  @OneToMany
-  @JoinColumn(name = "pendingid", insertable = false, updatable = false)
-  private HolidayPending holidayPending;
-
-  public HolidayPending getHolidayPending() {
-    return holidayPending;
-  }
-
-  public void setHolidayPending(HolidayPending holidayPending) {
-    this.holidayPending = holidayPending;
-  }
-
-  public void setDepartment(Department department) {
-    this.department = department;
-  }
-
-  public void setHolidays(Holidays holidays) {
-    this.holidays = holidays;
-  }
+  public User() {}
 
   public Integer getUserid() {
     return userid;
@@ -150,6 +113,47 @@ public class User implements Serializable {
   public void setDescription(String description) {
     this.description = description;
   }
+//
+//  @ManyToMany
+//  @JoinTable(
+//      name = "user_holiday_pending",
+//      joinColumns = @JoinColumn(name = "userid"),
+//      inverseJoinColumns = @JoinColumn(name = "pendingid"))
+//  private Set<HolidayPending> userpending;
+//
+//  @OneToMany(mappedBy = "user")
+//  private Set<Holidays> holidays;
+
+  @ManyToOne
+  private Department department;
+
+
+  //  public Set<HolidayPending> getUserpending() {
+//    return userpending;
+//  }
+//
+//
+//  public void setUserpending(Set<HolidayPending> userpending) {
+//    this.userpending = userpending;
+//  }
+//
+
+//
+//  public Set<Holidays> getHolidays() {
+//    return holidays;
+//  }
+//
+//  public void setHolidays(Set<Holidays> holidays) {
+//    this.holidays = holidays;
+//  }
+
+  public Department getDepartment() {
+    return department;
+  }
+
+  public void setDepartment(Department department) {
+    this.department = department;
+  }
 
   @Override
   public boolean equals(Object o) {
@@ -164,20 +168,5 @@ public class User implements Serializable {
     return Objects.hash(userid, username);
   }
 
-  @Override
-  public String toString() {
-    return new StringJoiner(", ", this.getClass().getSimpleName() + "[", "]")
-        .add("departmentid = " + departmentid)
-        .add("description = " + description)
-        .add("email = " + email)
-        .add("firstname = " + firstname)
-        .add("holidayid = " + holidayid)
-        .add("lastname = " + lastname)
-        .add("password = " + password)
-        .add("phone = " + phone)
-        .add("userid = " + userid)
-        .add("username = " + username)
-        .add("workstart = " + workstart)
-        .toString();
-  }
+
 }

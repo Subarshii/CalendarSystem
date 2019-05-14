@@ -25,19 +25,18 @@ public class DemoApplication implements CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
-//
-//    User user = new User();
-//    user.setUsername("Test1234");
-//    user.setPassword("123456");
-//    user.setFirstname("Chatchai");
-//    user.setLastname("Tiwaworawong");
-//    user.setDepartmentid(1);
-//    user.setEmail("s14_110@hotmail.com");
-//    user.setPhone((long) 980357093);
-//    user.setHolidayid(2);
-//    user.setWorkstart(LocalDate.of(2019, Month.MAY, 10));
-//    user.setDescription("TEST database");
-//    userRepository.save(user);
+      User user = new User();
+      user.setUsername("QQQQ");
+      user.setPassword("1234");
+      user.setFirstname("11");
+      user.setLastname("1");
+      user.setDepartmentid(444);
+      user.setEmail("1111@gmail.com");
+      user.setPhone((long) 123456789);
+      user.setHolidayid(7);
+      user.setWorkstart(LocalDate.of(2019, Month.MAY, 10));
+      user.setDescription("TEST database 2");
+      userRepository.save(user);
   }
 }
 

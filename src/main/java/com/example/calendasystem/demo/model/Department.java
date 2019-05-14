@@ -2,27 +2,29 @@ package com.example.calendasystem.demo.model;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "DEPARTMENT_CALENDAR")
 public class Department {
-  @GeneratedValue(generator = "department_id", strategy = GenerationType.SEQUENCE)
-  @SequenceGenerator(name = "department_id", allocationSize = 1, sequenceName = "DEPARTMENT_ID")
   @Id
+  @GeneratedValue(generator = "DepartmentIdGenerator", strategy = GenerationType.SEQUENCE)
+  @SequenceGenerator(name = "DepartmentIdGenerator", allocationSize = 1, sequenceName = "DEPARTMENTS_SEQ")
   private Integer departmentid;
 
   private String department;
   private String description;
 
-  @ManyToOne
-  @JoinColumn(name = "userid", insertable = false, updatable = false)
-  private User user;
+  @OneToMany(mappedBy = "department")
+  private Set<User> user;
 
-  public User getUser() {
+  public Department() {}
+
+  public Set<User> getUser() {
     return user;
   }
 
-  public void setUser(User user) {
+  public void setUser(Set<User> user) {
     this.user = user;
   }
 
@@ -61,19 +63,5 @@ public class Department {
   @Override
   public int hashCode() {
     return Objects.hash(departmentid);
-  }
-
-  @Override
-  public String toString() {
-    return "Department{"
-        + "departmentid="
-        + departmentid
-        + ", department='"
-        + department
-        + '\''
-        + ", description='"
-        + description
-        + '\''
-        + '}';
   }
 }

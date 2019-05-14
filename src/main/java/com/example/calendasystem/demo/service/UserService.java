@@ -30,15 +30,15 @@ public class UserService {
     User user1 = new User();
     user1.setUsername("Test02");
     user1.setPassword("123456");
-    user1.setFirstname("Chatchai");
-    user1.setLastname("Tiwaworawong");
-    user1.setDepartmentid(1);
-    user1.setEmail("s14_110@hotmail.com");
-    user1.setPhone((long) 980357093);
-    user1.setHolidayid(2);
+    user1.setFirstname("TETST");
+    user1.setLastname("wee");
+    user1.setDepartmentid(541);
+    user1.setEmail("1111@hotmail.com");
+    user1.setPhone((long) 123456789);
+    user1.setHolidayid(7);
     user1.setWorkstart(LocalDate.of(2019, Month.MAY, 10));
-    user1.setDescription("TEST database");
-    return userRepository.save(user);
+    user1.setDescription("TEST database 2");
+    return userRepository.save(user1);
   }
 
   public Optional<User> deleteUserById(Integer userId) {

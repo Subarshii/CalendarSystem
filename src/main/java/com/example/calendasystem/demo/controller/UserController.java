@@ -31,25 +31,21 @@ public class UserController {
   public Optional<User> getUser(@PathVariable(name = "userId") Integer userId) {
     return userRepository.findById(userId);
   }
-
-  @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-  public void saveUser(@RequestBody User userToSave) throws NoSuchMethodException {
-    UserService.class.getMethod("setUser", User.class);
-  }
-
-  @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-  public void saveDepartment(@RequestBody Department departToSave) throws NoSuchMethodException {
-    DepartmentService.class.getMethod("setDepartmet", Department.class);
-  }
-
-  @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-  public void saveHolidayPending(@RequestBody HolidayPending PendingToSave)
-      throws NoSuchMethodException {
-    HolidayPendingService.class.getMethod("setpending", HolidayPending.class);
-  }
-
-  @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-  public void saveHoliday(@RequestBody Holidays HoidayToSave) throws NoSuchMethodException {
-    HolidayService.class.getMethod("setholidays", Holidays.class);
-  }
+//
+//  @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+//  public void saveUser(@RequestBody User userToSave) throws NoSuchMethodException {
+//    UserService.class.getMethod("setUser", User.class);
+//  }
+//
+//  @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+//  public void saveDepartment(@RequestBody Department departToSave) throws NoSuchMethodException {
+//    DepartmentService.class.getMethod("setDepartmet", Department.class);
+//  }
+//
+//
+//
+//  @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+//  public void saveHoliday(@RequestBody Holidays HoidayToSave) throws NoSuchMethodException {
+//    HolidayService.class.getMethod("setholidays", Holidays.class);
+//  }
 }
