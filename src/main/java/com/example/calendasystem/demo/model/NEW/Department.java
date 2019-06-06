@@ -1,31 +1,23 @@
-package com.example.calendasystem.demo.model;
+package com.example.calendasystem.demo.model.NEW;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "DEPARTMENT_CALENDAR")
-public class Department {
+@Table(name = "DEPARTMENTS_EMPLOYEE")
+public class Department implements Serializable {
+
+  @GeneratedValue(generator = "DepartmentIdGenerator", strategy = GenerationType.AUTO)
   @Id
-  @GeneratedValue(generator = "DepartmentIdGenerator", strategy = GenerationType.SEQUENCE)
-  @SequenceGenerator(name = "DepartmentIdGenerator", allocationSize = 1, sequenceName = "DEPARTMENTS_SEQ")
   private Integer departmentid;
-
   private String department;
-  private String description;
 
-  @OneToMany(mappedBy = "department")
-  private Set<User> user;
+  @OneToMany private Set<Employee> employee;
 
-  public Department() {}
-
-  public Set<User> getUser() {
-    return user;
-  }
-
-  public void setUser(Set<User> user) {
-    this.user = user;
+  public Set<Employee> getEmployee() {
+    return employee;
   }
 
   public Integer getDepartmentid() {
@@ -44,12 +36,8 @@ public class Department {
     this.department = department;
   }
 
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
+  public void setEmployee(Set<Employee> employee) {
+    this.employee = employee;
   }
 
   @Override
